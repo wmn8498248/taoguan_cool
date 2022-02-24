@@ -21,7 +21,7 @@ const baseUrl: String = (function () {
 		proxy = store.get("proxy") || "dev";
 	}
 
-	return isDev ? `/${proxy}/admin` : `/api/admin`;
+	return isDev ? `/${proxy}` : `/api/admin`;
 })();
 
 // Socket
@@ -32,7 +32,7 @@ const iconfontUrl = ``;
 
 // 程序配置参数
 const app: any = store.get("__app__") || {
-	name: "COOL-ADMIN",
+	name: "套管监测平台",
 
 	conf: {
 		showAMenu: false, // 是否显示一级菜单栏

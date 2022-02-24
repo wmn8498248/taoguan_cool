@@ -1,5 +1,5 @@
 const fMenu = {
-	label: "首页",
+	label: "套管监测",
 	value: "/",
 	active: true
 };
