@@ -1,7 +1,7 @@
 import Mock from "mockjs";
 
 Mock.mock("/im/session/page", "post", (options: any) => {
-	const { keyWord = "" } = JSON.parse(options.body);
+	const { keyWord = "" } = JSON.parse(options.body); 
 
 	const data = Mock.mock({
 		"list|20": [
@@ -29,7 +29,7 @@ Mock.mock("/im/session/page", "post", (options: any) => {
 	});
 
 	return {
-		code: 1000,
+		code: 0,
 		data: {
 			list: data.list.filter((e: any) => e.nickname.includes(keyWord)),
 			pagination: {}
@@ -43,7 +43,7 @@ Mock.mock("/im/session/unreadCount", "get", () => {
 	});
 
 	return {
-		code: 1000,
+		code: 0,
 		data: data.count
 	};
 });
@@ -70,7 +70,7 @@ Mock.mock("/im/message/page", "post", () => {
 	});
 
 	return {
-		code: 1000,
+		code: 0,
 		data: {
 			list: data.list,
 			pagination: {}

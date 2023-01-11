@@ -5,7 +5,7 @@ import {
 	Router,
 	RouteRecordRaw
 } from "vue-router";
-import { routerMode } from "/@/config/env";
+import { routerMode } from "/@/config/env"; 
 
 declare interface CoolRouter extends Router {
 	$plugin?: {
@@ -21,11 +21,22 @@ const routes: Array<RouteRecordRaw> = [
 		children: [
 			{
 				path: "/",
-				name: "数据统计",
-				component: () => import("/@/views/home/index.vue")
-			}
+				name: "套管监测",
+				component: () => import("/@/views/home/test.vue")
+			},
+			
+			{///views/dashboard/admin/index.vue
+				path: 'dashboard',
+				component: () => import('/@/views/dashboard/admin/index.vue'),
+				meta: {
+				  title: '首页',
+				  icon: 'home',
+				  affix: true,
+				},
+			},
 		]
 	},
+	
 	{
 		path: "/:catchAll(.*)",
 		name: "404",

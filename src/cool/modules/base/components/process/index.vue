@@ -25,7 +25,7 @@
 		</div>
 
 		<div class="app-process__right hidden-xs-only" @click="toScroll(false)">
-			<i class="el-icon-arrow-right"></i>
+			1234<i class="el-icon-arrow-right"></i>
 		</div>
 	</div>
 </template>

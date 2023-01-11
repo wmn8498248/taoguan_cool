@@ -18,20 +18,21 @@ import { useCool } from "/@/cool";
 
 export default defineComponent({
 	setup() {
-		const { store } = useCool();
+		const { router, store } = useCool();
 
 		// 菜单是否展开
 		const menuCollapse = computed<any>(() => store.getters.menuCollapse);
 
 		// 浏览器信息
 		const browser = computed<any>(() => store.getters.browser);
-
+			
 		// 应用信息
 		const app = computed<any>(() => store.getters.app);
 
 		// 跳转官网
 		function toHome() {
-			location.href = "https://cool-js.com/";
+			// location.href = "/crud";
+			router.push({ path:'/'})
 		}
 
 		return {
@@ -59,8 +60,8 @@ export default defineComponent({
 		cursor: pointer;
 
 		img {
-			height: 30px;
-			width: 30px;
+			height: 50px;
+			width: 50px;
 		}
 
 		span {

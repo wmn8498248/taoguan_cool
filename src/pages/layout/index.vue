@@ -75,12 +75,12 @@ export default defineComponent({
 		};
 	}
 });
-</script>
+</script> 
 
 <style lang="scss" scoped>
 .page-layout {
 	display: flex;
-	background-color: #f7f7f7;
+	background-color: #000d27;
 	height: 100%;
 	width: 100%;
 	overflow: hidden;

@@ -2,13 +2,13 @@
 	<div class="page-login">
 		<div class="box">
 			<img class="logo" src="../../static/images/logo.png" alt="" />
-			<p class="desc">{{ app.name }}是一款快速开发后台权限管理系统</p>
-
-			<el-form label-position="top" class="form" size="medium" :disabled="saving">
-				<el-form-item label="用户名">
+			<p class="desc">{{ app.name }}欢迎来到！</p>
+			<p></p>
+			<el-form label-position="left" class="form" size="medium" :disabled="saving">
+				<el-form-item label="账号">
 					<el-input
 						v-model="form.username"
-						placeholder="请输入用户名"
+						placeholder="请输入账号"
 						maxlength="20"
 						auto-complete="off"
 					/>
@@ -16,7 +16,7 @@
 
 				<el-form-item label="密码">
 					<el-input
-						v-model="form.password"
+						v-model="form.password" 
 						type="password"
 						placeholder="请输入密码"
 						maxlength="20"
@@ -24,7 +24,7 @@
 					/>
 				</el-form-item>
 
-				<el-form-item label="验证码" class="captcha">
+				<!-- <el-form-item label="验证码" class="captcha">
 					<el-input
 						v-model="form.verifyCode"
 						placeholder="请输入图片验证码"
@@ -43,7 +43,7 @@
 							}
 						"
 					/>
-				</el-form-item>
+				</el-form-item> -->
 			</el-form>
 
 			<el-button round size="small" class="submit-btn" :loading="saving" @click="toLogin"
@@ -77,8 +77,8 @@ export default defineComponent({
 
 		// 登录表单数据
 		const form = reactive({
-			username: "",
-			password: "",
+			username: "laoma",
+			password: "laoma",
 			captchaId: "",
 			verifyCode: ""
 		});
@@ -93,21 +93,24 @@ export default defineComponent({
 				return ElMessage.warning("密码不能为空");
 			}
 
-			if (!form.verifyCode) {
-				return ElMessage.warning("图片验证码不能为空");
-			}
+			// if (!form.verifyCode) {
+			// 	return ElMessage.warning("图片验证码不能为空");
+			// }
 
 			saving.value = true;
 
 			try {
 				// 登录
 				await store.dispatch("userLogin", form);
-
+				console.log("登陆")
 				// 用户信息
 				await store.dispatch("userInfo");
+				console.log("用户信息")
 
 				// 读取Eps
-				await useEps();
+				// await useEps();
+				// console.log("读取Eps")
+
 
 				// 权限菜单
 				const [first] = await store.dispatch("permMenu");
@@ -143,17 +146,22 @@ export default defineComponent({
 	width: 100vw;
 	position: relative;
 	background-color: #2f3447;
-
+	background: url(../../static/images/bg.jpg) 50% fixed no-repeat;
+	background-size: cover;
 	.box {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		height: 500px;
-		width: 500px;
+		// width: 500px;
 		position: absolute;
-		left: calc(50% - 250px);
+		right: 10%;
 		top: calc(50% - 250px);
+		padding: 0 40px;
+		overflow: hidden;
+		background: url(../../static/images/login_form.png);
+		background-size: 100% 100%;
 
 		.logo {
 			height: 50px;
@@ -181,18 +189,18 @@ export default defineComponent({
 
 			.el-input {
 				.el-input__inner {
-					border: 0;
-					border-bottom: 0.5px solid #999;
-					border-radius: 0;
-					padding: 0 5px;
-					background-color: transparent;
+					// border: 0;
+					// border-bottom: 0.5px solid #999;
+					// border-radius: 0;
+					// padding: 0 5px;
+					// background-color: transparent;
 					color: #ccc;
 					transition: border-color 0.3s;
 					position: relative;
 
 					&:focus {
-						border-color: #fff;
-						color: #fff;
+						border-color: #888888;
+						color: #888888;
 					}
 
 					&:-webkit-autofill {
@@ -218,6 +226,11 @@ export default defineComponent({
 			margin-top: 40px;
 			padding: 9px 40px;
 			color: #000;
+		}
+	}
+	@media only screen and (max-width: 750px){
+		.box{
+			right: 0;
 		}
 	}
 }

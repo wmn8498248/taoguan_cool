@@ -6,7 +6,7 @@ const state: any = {
 	// 授权标识
 	token: storage.get("token") || null,
 	// 用户信息
-	info: storage.get("userInfo") || {}
+	info: storage.get("userInfo") || {} 
 };
 
 const getters = {
@@ -17,7 +17,8 @@ const getters = {
 const actions = {
 	// 用户登录
 	userLogin({ commit }: any, form: any): Promise<any> {
-		return store.service.base.open.userLogin(form).then((res: Token) => {
+		return store.service.base.open.userLogin(form).then((res: any) => {
+			console.log(res, "用户登录")
 			commit("SET_TOKEN", res);
 			return res;
 		});

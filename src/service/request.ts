@@ -32,7 +32,7 @@ axios.interceptors.request.use(
 
 		if (config.url) {
 			if (!ignore.token.some((e) => config.url.includes(e))) {
-				config.headers["Authorization"] = token;
+				config.headers["token"] = token;
 			}
 
 			if (!ignore.NProgress.some((e) => config.url.includes(e))) {
@@ -77,7 +77,7 @@ axios.interceptors.request.use(
 					// 继续请求
 					requests.push((token: string) => {
 						// 重新设置 token
-						config.headers["Authorization"] = token;
+						config.headers["token"] = token;
 						resolve(config);
 					});
 				});
@@ -95,26 +95,28 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
 	(res) => {
 		NProgress.done();
-		const { code, data, message } = res.data;
-
-		if (!res.data) {
-			return res;
-		}
-
-		switch (code) {
-			case 1000:
+		const data = res.data;
+		// if (!res.data) {
+		// 	return res;
+		// }
+		switch (data.code) {
+			case 0:
 				return data;
+			case 500:
+				ElMessage.error("你错误");	
+			case 401:
+				store.dispatch("userRemove");
+				href("/login");
+				break;
 			default:
-				return Promise.reject(message);
+				return Promise.reject(data.msg);
 		}
 	},
 	async (error) => {
 		NProgress.done();
-
 		if (error.response) {
 			const { status, config } = error.response;
-
-			switch (status) {
+			switch (status.code) {
 				case 401:
 					await store.dispatch("userRemove");
 					href("/login");

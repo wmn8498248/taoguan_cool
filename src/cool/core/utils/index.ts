@@ -234,7 +234,7 @@ export function orderBy(list: Array<any>, key: any) {
 }
 
 export function deepTree(list: Array<any>) {
-	const newList: Array<any> = [];
+	let newList: Array<any> = [];
 	const map: any = {};
 
 	list.forEach((e) => (map[e.id] = e));

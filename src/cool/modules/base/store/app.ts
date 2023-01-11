@@ -27,11 +27,12 @@ const getters = {
 
 const actions = {
 	async appLoad({ getters, dispatch, commit }: any) {
+		console.log("appLoad", getters.token)
 		if (getters.token) {
 			commit("SHOW_LOADING");
 
 			// 读取Eps
-			await useEps();
+			// await useEps();
 
 			// 读取菜单权限
 			await dispatch("permMenu");
@@ -55,6 +56,7 @@ const mutations = {
 
 	// 设置浏览器信息
 	SET_BROWSER(state: any) {
+		console.log(state, "设置浏览器信息")
 		state.browser = getBrowser();
 	},
 

@@ -409,7 +409,7 @@ export const cool = (): Plugin | null => {
 						const body: any = await parseJson(req);
 						await createVue(body);
 						done({
-							code: 1000
+							code: 10007
 						});
 					} catch (e) {
 						done({
@@ -418,9 +418,11 @@ export const cool = (): Plugin | null => {
 						});
 					}
 				} else if (req.url.includes("/__cool_modules")) {
+					
+
 					const dirs = fs.readdirSync(path.join(coolPath, "modules"));
 					done({
-						code: 1000,
+						code: 10008,
 						data: dirs.filter((e) => !e.includes("."))
 					});
 				} else {

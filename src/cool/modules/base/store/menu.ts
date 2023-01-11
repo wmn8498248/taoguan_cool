@@ -37,25 +37,27 @@ const actions = {
 	permMenu({ commit, state, getters }: any) {
 		return new Promise((resolve, reject) => {
 			const next = (res: any) => {
-				if (!isArray(res.menus)) {
-					res.menus = [];
+
+				if (!isArray(res.menuRouter)) {
+					res.menuRouter = [];
 				}
 
-				if (!isArray(res.perms)) {
-					res.perms = [];
+				if (!isArray(res.permissions)) {
+					res.permissions = [];
 				}
-
-				const routes = res.menus
+				
+				const routes = res.menuRouter
 					.filter((e: MenuItem) => e.type != 2)
 					.map((e: MenuItem) => {
+						
 						return {
-							id: e.id,
+							id: e.menuId,
 							parentId: e.parentId,
-							path: revisePath(e.router || String(e.id)),
-							viewPath: e.viewPath,
+							path: revisePath(e.routerPath || String(e.menuId)),
+							viewPath: e.routerView, 
 							type: e.type,
 							name: e.name,
-							icon: e.icon,
+							icon: e.routerIcon,
 							orderNum: e.orderNum,
 							isShow: isEmpty(e.isShow) ? true : e.isShow,
 							meta: {
@@ -68,9 +70,10 @@ const actions = {
 
 				// 转成树形菜单
 				const menuGroup = deepTree(routes);
+				console.log(menuGroup, "形成属性菜单")	
 
 				// 设置权限
-				commit("SET_PERMIESSION", res.perms);
+				commit("SET_PERMIESSION", res.permissions);
 				// 设置菜单组
 				commit("SET_MENU_GROUP", menuGroup);
 				// 设置视图路由

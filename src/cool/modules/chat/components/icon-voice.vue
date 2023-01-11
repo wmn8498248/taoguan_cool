@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineProps, ref, watch } from "vue";
+import { ref, watch } from "vue";
 
 let timer: any = null;
 

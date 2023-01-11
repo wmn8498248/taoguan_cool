@@ -1,6 +1,6 @@
 import { BaseService, Service } from "/@/cool";
 
-@Service("base/open")
+@Service("")
 class Open extends BaseService {
 	/**
 	 * 用户登录
@@ -11,14 +11,9 @@ class Open extends BaseService {
 	 */
 	userLogin({ username, password, captchaId, verifyCode }: any) {
 		return this.request({
-			url: "/login",
+			url: "/sys/login",
 			method: "POST",
-			data: {
-				username,
-				password,
-				captchaId,
-				verifyCode
-			}
+			data: "username=" + username+"&password=" + password
 		});
 	}
 

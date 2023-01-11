@@ -48,12 +48,12 @@ export default defineComponent({
 	},
 
 	render(ctx: any) {
-		function deepMenu(list: any, index: number) {
-			return list
-				.filter((e: any) => e.isShow)
-				.map((e: any) => {
-					let html = null;
 
+		function deepMenu(list: any, index: number) {
+		    
+			return list.filter((e: any) => e.isShow).map((e: any) => {
+					let html = null;
+					
 					if (e.type == 0) {
 						html = h(
 							<el-sub-menu></el-sub-menu>,
@@ -95,7 +95,6 @@ export default defineComponent({
 							}
 						);
 					}
-
 					return html;
 				});
 		}

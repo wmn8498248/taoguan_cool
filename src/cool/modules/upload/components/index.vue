@@ -27,7 +27,7 @@
 				:disabled="disabled"
 				v-loading="_loading"
 				:headers="{
-					Authorization: token,
+					token: token,
 					...headers
 				}"
 				:http-request="action ? undefined : httpRequest"

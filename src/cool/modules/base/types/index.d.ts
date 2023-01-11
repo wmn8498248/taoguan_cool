@@ -12,14 +12,14 @@ export declare enum MenuType {
 }
 
 export declare interface MenuItem {
-	id: number;
+	menuId: number;
 	parentId: number;
 	path: string;
-	router?: string;
-	viewPath?: string;
+	routerPath?: string;
+	routerView?: string;
 	type: MenuType;
 	name: string;
-	icon: string;
+	routerIcon: string;
 	orderNum: number;
 	isShow: number;
 	keepAlive?: number;

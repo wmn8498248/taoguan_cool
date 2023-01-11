@@ -118,7 +118,7 @@ function useModule(app: any) {
 					d._services.push({
 						path: i.replace(`/src/cool/modules/${name}/service`, `${name}`),
 						value: new value()
-					});
+					}); 
 					break;
 
 				case "pages":

@@ -31,10 +31,12 @@
 
 		<!-- 用户信息 -->
 		<div class="app-topbar__user">
+			<!-- {{userInfo}} -->
 			<el-dropdown trigger="click" :hide-on-click="false" @command="onCommand">
-				<span v-if="userInfo" class="el-dropdown-link">
-					<span class="name">{{ userInfo.nickName }}</span>
-					<img class="avatar" :src="userInfo.headImg" />
+				<span v-if="userInfo.user" class="el-dropdown-link">
+					<span class="name">{{ userInfo.user.username }}</span>
+					<!-- default-avatar.png -->
+					<img class="avatar" :src="userInfo.user.headImg?userInfo.headImg:'/src/cool/modules/base/static/images/default-avatar.png'" />
 				</span>
 
 				<template #dropdown>
@@ -71,13 +73,15 @@ export default defineComponent({
 
 		// 跳转官网
 		async function onCommand(name: string) {
+			// console.log(name, "跳转官网")
 			switch (name) {
 				case "my":
 					router.push("/my/info");
 					break;
 				case "exit":
 					await store.dispatch("userLogout");
-					href("/login");
+					// href("/login");
+					router.push("/login");
 					break;
 			}
 		}

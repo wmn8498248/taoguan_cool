@@ -1,6 +1,6 @@
 import { BaseService, Service } from "/@/cool";
 
-@Service("base/comm")
+@Service("")
 class Common extends BaseService {
 	/**
 	 * 文件上传模式
@@ -30,8 +30,8 @@ class Common extends BaseService {
 	 */
 	userLogout() {
 		return this.request({
-			url: "/logout",
-			method: "POST"
+			url: "/sys/logout",
+			method: "POST" 
 		});
 	}
 
@@ -43,7 +43,7 @@ class Common extends BaseService {
 	 */
 	userInfo() {
 		return this.request({
-			url: "/person"
+			url: "/sys/user/info"
 		});
 	}
 
@@ -72,7 +72,7 @@ class Common extends BaseService {
 	 */
 	permMenu() {
 		return this.request({
-			url: "/permmenu"
+			url: "/sys/menu/nav"
 		});
 	}
 
